@@ -38,12 +38,18 @@ class BookmarkCard extends StatelessWidget {
           children: [
             SizedBox(
               width: double.infinity,
-              child: Text(
-                textAlign: TextAlign.end,
-                bookmark.arab,
-                style: const TextStyle(
-                  fontSize: 23,
-                  fontFamily: 'Uthmani',
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 5,
+                ),
+                child: Text(
+                  textAlign: TextAlign.end,
+                  bookmark.arab,
+                  style: const TextStyle(
+                    fontSize: 23,
+                    height: 2,
+                    fontFamily: 'Uthmani',
+                  ),
                 ),
               ),
             ),

@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/data/database/bookmark.dart';
 import '../../../../core/usecase/usecase.dart';
-import '../../domain/usecases/get _all_bookmark.dart';
+import '../../domain/usecases/get_all_bookmark.dart';
 
 part 'bookmark_event.dart';
 part 'bookmark_state.dart';
