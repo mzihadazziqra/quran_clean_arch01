@@ -88,8 +88,8 @@ class SurahCard extends StatelessWidget {
                 ],
               ),
             ),
-            Divider(
-              color: Colors.grey.shade300,
+            const Divider(
+              color: AppColor.secondary,
               height: 2,
             ),
           ],

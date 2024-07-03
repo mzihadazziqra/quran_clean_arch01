@@ -131,7 +131,7 @@ class _AyatCardState extends State<AyatCard> {
             Container(
               height: 1,
               width: double.infinity,
-              color: Colors.grey.shade200,
+              color: AppColor.secondary,
             ),
 
             // Latin
@@ -156,7 +156,7 @@ class _AyatCardState extends State<AyatCard> {
                       Container(
                         height: 1,
                         width: double.infinity,
-                        color: Colors.grey.shade200,
+                        color: AppColor.secondary,
                       ),
                     ],
                   )
@@ -184,7 +184,7 @@ class _AyatCardState extends State<AyatCard> {
                       Container(
                         height: 1,
                         width: double.infinity,
-                        color: Colors.grey.shade200,
+                        color: AppColor.secondary,
                       ),
                     ],
                   )
