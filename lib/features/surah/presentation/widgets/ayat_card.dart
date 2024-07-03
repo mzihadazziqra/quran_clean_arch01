@@ -6,18 +6,23 @@ import '../../../../core/utils/show_snackbar.dart';
 import '../../domain/entities/quran_surah.dart';
 import '../bloc/audio_bloc/audio_bloc.dart';
 import '../bloc/bookmark_surah_bloc/bookmark_surah_bloc.dart';
+import 'bookmark_icon.dart';
 import 'tafsir_info.dart';
 
 class AyatCard extends StatefulWidget {
   final Ayah ayat;
   final String namaSurah;
   final int nomorSurah;
+  final bool showTranslation;
+  final bool showLatin;
 
   const AyatCard({
     super.key,
     required this.ayat,
     required this.namaSurah,
     required this.nomorSurah,
+    required this.showTranslation,
+    required this.showLatin,
   });
 
   @override
@@ -28,6 +33,10 @@ class _AyatCardState extends State<AyatCard> {
   bool _isBookmarked = false;
   bool _isPlaying = false;
   bool _isLoading = false;
+
+  bool showTranslation = true;
+  bool showLatin = true;
+
   late AudioBloc _audioBloc;
   late BookmarkSurahBloc _bookmarkSurahBloc;
 
@@ -90,10 +99,7 @@ class _AyatCardState extends State<AyatCard> {
           boxShadow: [
             BoxShadow(
               color: const Color.fromARGB(255, 79, 69, 82).withOpacity(0.1),
-              offset: const Offset(
-                3,
-                3,
-              ),
+              offset: const Offset(3, 3),
               blurRadius: 6,
             ),
           ],
@@ -121,51 +127,72 @@ class _AyatCardState extends State<AyatCard> {
                 ),
               ),
             ),
+
             Container(
               height: 1,
               width: double.infinity,
               color: Colors.grey.shade200,
             ),
+
+            // Latin
+            widget.showLatin
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 5,
+                        ),
+                        child: Text(
+                          widget.ayat.teksLatin ?? '',
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(
+                            color: AppColor.textSecondary,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 1,
+                        width: double.infinity,
+                        color: Colors.grey.shade200,
+                      ),
+                    ],
+                  )
+                : const SizedBox(),
+
+            // Terjemahan
+            widget.showTranslation
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 5,
+                        ),
+                        child: Text(
+                          widget.ayat.translation ?? '',
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(
+                            color: AppColor.textPrimary,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 1,
+                        width: double.infinity,
+                        color: Colors.grey.shade200,
+                      ),
+                    ],
+                  )
+                : const SizedBox(),
+
+            // icons
             Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 5,
-              ),
-              child: Text(
-                widget.ayat.teksLatin ?? '',
-                textAlign: TextAlign.justify,
-                style: const TextStyle(
-                  color: AppColor.textSecondary,
-                  fontSize: 14,
-                ),
-              ),
-            ),
-            Container(
-              height: 1,
-              width: double.infinity,
-              color: Colors.grey.shade200,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 5,
-              ),
-              child: Text(
-                widget.ayat.translation ?? '',
-                textAlign: TextAlign.justify,
-                style: const TextStyle(
-                  color: AppColor.textPrimary,
-                  fontSize: 14,
-                ),
-              ),
-            ),
-            Container(
-              height: 1,
-              width: double.infinity,
-              color: Colors.grey.shade200,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -190,17 +217,18 @@ class _AyatCardState extends State<AyatCard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      // audio player disini
+                      // audio icon
                       _buildAudioIcon(context),
+
+                      // tafsir info
                       IconButton(
                         onPressed: () {
                           showModalBottomSheet(
                             context: context,
-                            isScrollControlled: true,
                             builder: (context) => TafsirInfo(
                               tafisr: widget.ayat.tafsir!,
-                              nomor: widget.ayat.number!.inSurah!,
                               namaSurah: widget.namaSurah,
+                              nomor: widget.ayat.number!.inSurah!,
                             ),
                           );
                         },
@@ -208,8 +236,14 @@ class _AyatCardState extends State<AyatCard> {
                           Icons.info_outline,
                         ),
                       ),
+
                       // bookmark disini
-                      _buildBookmarkIcon(_isBookmarked, context),
+                      BookmarkIcon(
+                        isBookmarked: _isBookmarked,
+                        ayat: widget.ayat,
+                        nomorSurah: widget.nomorSurah,
+                        namaSurah: widget.namaSurah,
+                      )
                     ],
                   ),
                 ],
@@ -236,44 +270,12 @@ class _AyatCardState extends State<AyatCard> {
             : IconButton(
                 onPressed: () {
                   _isPlaying
-                      ? _audioBloc.add(
-                          AudioPauseEvent(),
-                        )
-                      : _audioBloc.add(
-                          AudioPlayEvent(ayat: widget.ayat),
-                        );
+                      ? _audioBloc.add(AudioPauseEvent())
+                      : _audioBloc.add(AudioPlayEvent(ayat: widget.ayat));
                 },
-                icon: Icon(
-                  _isPlaying ? Icons.pause_circle : Icons.play_circle,
-                ),
+                icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle),
               );
       },
-    );
-  }
-
-  Widget _buildBookmarkIcon(bool isBookmarked, BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        final bookmarkSurahBloc = context.read<BookmarkSurahBloc>();
-        if (isBookmarked) {
-          bookmarkSurahBloc.add(BookmarkRemoved(widget.ayat.id!));
-          showSnackbar(context, "Bookmark berhasil di hapus");
-        } else {
-          bookmarkSurahBloc.add(
-            BookmarkAdded(
-              ayat: widget.ayat,
-              nomorSurah: widget.nomorSurah,
-              numberInJuz: widget.ayat.meta!.juz!,
-              namaSurah: widget.namaSurah,
-              via: "surah",
-            ),
-          );
-          showSnackbar(context, "Bookmark berhasil ditambahkan");
-        }
-      },
-      icon: Icon(
-        isBookmarked ? Icons.bookmark : Icons.bookmark_border,
-      ),
     );
   }
 }

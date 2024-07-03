@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'core/theme/theme.dart';
 import 'features/bookmark/presentation/bloc/bookmark_bloc.dart';
@@ -15,7 +16,7 @@ import 'init_dependencies.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependencies();
-
+  await GetStorage.init();
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(

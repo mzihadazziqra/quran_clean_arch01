@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quran_clean_arch/core/common/widgets/loader.dart';
-import 'package:quran_clean_arch/init_dependencies.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:quran_clean_arch/features/surah/presentation/widgets/detail_surah_settings.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
+import '../../../../core/common/widgets/loader.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../../core/utils/src/img_string.dart';
+import '../../../../init_dependencies.dart';
 import '../../domain/entities/quran_surah.dart';
 import '../bloc/audio_bloc/audio_bloc.dart';
 import '../bloc/bookmark_surah_bloc/bookmark_surah_bloc.dart';
@@ -42,8 +44,12 @@ class DetailSurahPage extends StatefulWidget {
 
 class _DetailSurahPageState extends State<DetailSurahPage> {
   final AutoScrollController _scrollController = AutoScrollController();
-  int _lastReadIndex = 0;
   late DetailSurahBloc detailSurahBloc;
+  final GetStorage _box = GetStorage();
+
+  int _lastReadIndex = 0;
+  bool showTranslation = true;
+  bool showLatin = true;
 
   @override
   void initState() {
@@ -53,6 +59,27 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
     context.read<BookmarkSurahBloc>().add(BookmarksFetched());
     WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollToIndex();
+    });
+    _loadSettings();
+  }
+
+  void _loadSettings() {
+    showTranslation = _box.read('showTranslation') ?? true;
+    showLatin = _box.read('showLatin') ?? true;
+    setState(() {});
+  }
+
+  void _onTranslationChanged(bool value) {
+    setState(() {
+      showTranslation = value;
+      _box.write('showTranslation', value);
+    });
+  }
+
+  void _onLatinChanged(bool value) {
+    setState(() {
+      showLatin = value;
+      _box.write('showLatin', value);
     });
   }
 
@@ -109,8 +136,21 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
                 title: Text(state.surah.namaLatin ?? ''),
                 actions: [
                   IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.layers, color: AppColor.primary1,),
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) => DetailSurahSettings(
+                          showLatin: showLatin,
+                          showTranslation: showTranslation,
+                          onTranslationChanged: _onTranslationChanged,
+                          onLatinChanged: _onLatinChanged,
+                        ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.layers,
+                      color: AppColor.primary1,
+                    ),
                   ),
                   const SizedBox(width: 20),
                 ],
@@ -168,6 +208,8 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
                                     namaSurah: state.surah.namaLatin!,
                                     nomorSurah: state.surah.nomor!,
                                     key: ValueKey(ayat.id),
+                                    showTranslation: showTranslation,
+                                    showLatin: showLatin,
                                   ),
                                 ),
                               ),

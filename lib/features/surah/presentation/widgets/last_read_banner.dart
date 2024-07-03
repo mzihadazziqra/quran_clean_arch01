@@ -87,16 +87,14 @@ class LastReadBanner extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              namaSurah ?? 'Last Read Kosong',
+                              namaSurah ?? 'Terakhir Dibaca Kosong',
                               style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 20,
                                 color: AppColor.textPrimary,
                               ),
                             ),
-                            const SizedBox(
-                              height: 1,
-                            ),
+                            const SizedBox(height: 1),
                             Text(
                               'Ayat $nomorAyat',
                               style: const TextStyle(
@@ -109,9 +107,7 @@ class LastReadBanner extends StatelessWidget {
                         );
                       },
                     ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    const SizedBox(height: 5),
                   ],
                 ),
               ),
