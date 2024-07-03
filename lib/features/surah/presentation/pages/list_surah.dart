@@ -28,6 +28,7 @@ class ListSurah extends StatelessWidget {
                       '/detail_surah',
                       arguments: {
                         'nomorSurah': surah.nomor,
+                        'namaSurah': surah.namaLatin,
                         'indexAyat': null,
                       },
                     );

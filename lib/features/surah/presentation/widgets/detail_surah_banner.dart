@@ -30,7 +30,7 @@ class DetailSurahBanner extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               child: Container(
                 decoration: const BoxDecoration(
-                  color: AppColor.primary2,
+                  color: AppColor.secondary,
                 ),
                 child: Stack(
                   children: [
@@ -61,7 +61,7 @@ class DetailSurahBanner extends StatelessWidget {
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 26,
-                                  color: AppColor.white,
+                                  color: AppColor.textPrimary,
                                 ),
                               ),
                               const SizedBox(
@@ -72,7 +72,7 @@ class DetailSurahBanner extends StatelessWidget {
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w100,
                                   fontSize: 15,
-                                  color: AppColor.white,
+                                  color: AppColor.textPrimary,
                                 ),
                               ),
                               Text(
@@ -80,7 +80,7 @@ class DetailSurahBanner extends StatelessWidget {
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15,
-                                  color: AppColor.white,
+                                  color: AppColor.textSecondary,
                                 ),
                               ),
                             ],
@@ -93,7 +93,7 @@ class DetailSurahBanner extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
-                                  color: Colors.white,
+                                  color: AppColor.textPrimary,
                                 ),
                               ),
                               Text(
@@ -102,15 +102,15 @@ class DetailSurahBanner extends StatelessWidget {
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 30,
-                                  color: Colors.white,
+                                  color: AppColor.textSecondary,
                                 ),
                               ),
                               Text(
                                 "${surah.jumlahAyat} Ayat",
                                 style: const TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 10,
-                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 13,
+                                  color: AppColor.textPrimary,
                                 ),
                               ),
                             ],

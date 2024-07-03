@@ -22,40 +22,44 @@ class _BookmarkPageState extends State<BookmarkPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<BookmarkBloc, BookmarkState>(
-        builder: (context, state) {
-          if (state is BookmarkLoading) {
-            return const Loader();
-          } else if (state is BookmarksLoaded) {
-            return ListView.builder(
-              itemCount: state.bookmarks.length,
-              itemBuilder: (context, index) {
-                final bookmark = state.bookmarks[index];
-                final indexAyat = bookmark.number.inSurah! - 1;
-                return BookmarkCard(
-                  bookmark: bookmark,
-                  index: index,
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/detail_surah',
-                      arguments: {
-                        'nomorSurah': bookmark.nomorSurah,
-                        'indexAyat': indexAyat,
-                      },
-                    );
-                  },
-                );
-              },
-            );
-          } else if (state is BookmarkError) {
-            return Center(
-              child: Text(state.message),
-            );
-          } else {
-            return Container();
-          }
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: BlocBuilder<BookmarkBloc, BookmarkState>(
+          builder: (context, state) {
+            if (state is BookmarkLoading) {
+              return const Loader();
+            } else if (state is BookmarksLoaded) {
+              return ListView.builder(
+                itemCount: state.bookmarks.length,
+                itemBuilder: (context, index) {
+                  final bookmark = state.bookmarks[index];
+                  final indexAyat = bookmark.number.inSurah! - 1;
+                  return BookmarkCard(
+                    bookmark: bookmark,
+                    index: index,
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/detail_surah',
+                        arguments: {
+                          'nomorSurah': bookmark.nomorSurah,
+                          'namaSurah': bookmark.namaSurah,
+                          'indexAyat': indexAyat,
+                        },
+                      );
+                    },
+                  );
+                },
+              );
+            } else if (state is BookmarkError) {
+              return Center(
+                child: Text(state.message),
+              );
+            } else {
+              return Container();
+            }
+          },
+        ),
       ),
     );
   }

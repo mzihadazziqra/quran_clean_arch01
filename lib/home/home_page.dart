@@ -67,9 +67,9 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.transparent,
                   ),
                 ),
-                backgroundColor: AppColor.backgroundColor, 
+                backgroundColor: AppColor.backgroundColor,
                 bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(10), 
+                  preferredSize: Size.fromHeight(10),
                   child: HomeTabBar(),
                 ),
               ),

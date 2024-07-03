@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:quran_clean_arch/features/surah/presentation/widgets/detail_surah_settings.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -17,14 +16,17 @@ import '../bloc/detail_surah_bloc/detail_surah_bloc.dart';
 import '../bloc/surah_bloc/surah_bloc.dart';
 import '../widgets/ayat_card.dart';
 import '../widgets/detail_surah_banner.dart';
+import '../widgets/detail_surah_settings.dart';
 
 class DetailSurahPage extends StatefulWidget {
   final int nomorSurah;
+  final String namaSurah;
   final int? indexAyat;
   const DetailSurahPage({
     super.key,
     required this.nomorSurah,
     this.indexAyat,
+    required this.namaSurah,
   });
 
   static Route<dynamic> route(RouteSettings settings) {
@@ -34,6 +36,7 @@ class DetailSurahPage extends StatefulWidget {
       builder: (_) => DetailSurahPage(
         nomorSurah: args['nomorSurah'],
         indexAyat: args['indexAyat'],
+        namaSurah: args['namaSurah'],
       ),
     );
   }
@@ -117,45 +120,45 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<AudioBloc>(
-          create: (context) => serviceLocator<AudioBloc>(),
-        ),
-        BlocProvider<BookmarkSurahBloc>(
-          create: (context) => serviceLocator<BookmarkSurahBloc>(),
-        ),
-      ],
-      child: BlocBuilder<DetailSurahBloc, DetailSurahState>(
-        builder: (context, state) {
-          if (state is SurahLoading) {
-            return const Loader();
-          } else if (state is DetailSurahSuccess) {
-            return Scaffold(
-              appBar: AppBar(
-                title: Text(state.surah.namaLatin ?? ''),
-                actions: [
-                  IconButton(
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (context) => DetailSurahSettings(
-                          showLatin: showLatin,
-                          showTranslation: showTranslation,
-                          onTranslationChanged: _onTranslationChanged,
-                          onLatinChanged: _onLatinChanged,
-                        ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.layers,
-                      color: AppColor.primary1,
-                    ),
-                  ),
-                  const SizedBox(width: 20),
-                ],
-              ),
-              body: BlocBuilder<BookmarkSurahBloc, BookmarkSurahState>(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.namaSurah),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => DetailSurahSettings(
+                  showLatin: showLatin,
+                  showTranslation: showTranslation,
+                  onTranslationChanged: _onTranslationChanged,
+                  onLatinChanged: _onLatinChanged,
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.layers,
+              color: AppColor.primary1,
+            ),
+          ),
+          const SizedBox(width: 20),
+        ],
+      ),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<AudioBloc>(
+            create: (context) => serviceLocator<AudioBloc>(),
+          ),
+          BlocProvider<BookmarkSurahBloc>(
+            create: (context) => serviceLocator<BookmarkSurahBloc>(),
+          ),
+        ],
+        child: BlocBuilder<DetailSurahBloc, DetailSurahState>(
+          builder: (context, state) {
+            if (state is SurahLoading) {
+              return const Loader();
+            } else if (state is DetailSurahSuccess) {
+              return BlocBuilder<BookmarkSurahBloc, BookmarkSurahState>(
                 builder: (context, bookmarkState) {
                   context.read<BookmarkSurahBloc>().add(BookmarksFetched());
                   return ListView.builder(
@@ -220,14 +223,14 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
                     },
                   );
                 },
-              ),
-            );
-          } else if (state is DetailSurahError) {
-            return Center(child: Text(state.message));
-          } else {
-            return Container();
-          }
-        },
+              );
+            } else if (state is DetailSurahError) {
+              return Center(child: Text(state.message));
+            } else {
+              return Container();
+            }
+          },
+        ),
       ),
     );
   }

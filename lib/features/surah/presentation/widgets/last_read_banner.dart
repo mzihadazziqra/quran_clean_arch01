@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/theme/app_color.dart';
+import '../../../../core/utils/src/img_string.dart';
 import '../bloc/last_read/last_read_bloc.dart';
 
 class LastReadBanner extends StatelessWidget {
@@ -28,6 +30,7 @@ class LastReadBanner extends StatelessWidget {
               '/detail_surah',
               arguments: {
                 'nomorSurah': nomorSurah,
+                'namaSurah': namaSurah,
                 'indexAyat': nomorAyat! - 1,
               },
             );
@@ -38,6 +41,14 @@ class LastReadBanner extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           child: Stack(
             children: [
+              Positioned(
+                bottom: -8,
+                right: 5,
+                child: SvgPicture.asset(
+                  ImgString.quran2_assets,
+                  height: 120,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 25,
@@ -87,7 +98,7 @@ class LastReadBanner extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              namaSurah ?? 'Terakhir Dibaca Kosong',
+                              namaSurah ?? 'Terakhir Dibaca',
                               style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 20,

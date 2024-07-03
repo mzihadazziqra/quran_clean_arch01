@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
             builder: (_) => DetailSurahPage(
               nomorSurah: args['nomorSurah'],
               indexAyat: args['indexAyat'],
+              namaSurah: args['namaSurah'],
             ),
           );
         }

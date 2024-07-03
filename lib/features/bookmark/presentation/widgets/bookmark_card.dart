@@ -33,63 +33,60 @@ class BookmarkCard extends StatelessWidget {
       ),
       child: InkWell(
         onTap: onPressed,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: AppColor.primary2,
-                borderRadius: BorderRadius.circular(10),
+        child: Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: double.infinity,
+                child: Text(
+                  textAlign: TextAlign.end,
+                  bookmark.arab,
+                  style: const TextStyle(
+                    fontSize: 23,
+                    fontFamily: 'Uthmani',
+                  ),
+                ),
               ),
-              child: Text(
-                '${index + 1}',
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    width: double.infinity,
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 5,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColor.secondary,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                     child: Text(
-                      textAlign: TextAlign.end,
-                      bookmark.arab,
+                      '${index + 1}',
+                      style: const TextStyle(color: AppColor.primary1),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColor.primary2,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      '${bookmark.namaSurah} ayat ${bookmark.number.inSurah}',
                       style: const TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Uthmani',
+                        color: AppColor.backgroundColor,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '${bookmark.namaSurah} ayat ${bookmark.number.inSurah} ',
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 5,
-                          vertical: 1,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColor.primary2,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          bookmark.via,
-                          style: const TextStyle(color: AppColor.white),
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
