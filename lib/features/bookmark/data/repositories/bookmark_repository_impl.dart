@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../../../core/data/database/bookmark.dart';
-import '../../../../core/data/database/database_helper.dart';
+import '../../../../core/database/database/bookmark.dart';
+import '../../../../core/database/database/database_helper.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failure.dart';
 import '../../domain/repositories/bookmark_repository.dart';

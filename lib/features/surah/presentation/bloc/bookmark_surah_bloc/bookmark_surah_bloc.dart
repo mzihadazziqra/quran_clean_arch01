@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:quran_clean_arch/core/data/database/bookmark.dart';
 
+import '../../../../../core/database/database/bookmark.dart';
 import '../../../../../core/usecase/usecase.dart';
 import '../../../domain/entities/quran_surah.dart';
 import '../../../domain/usecases/bookmark.dart';

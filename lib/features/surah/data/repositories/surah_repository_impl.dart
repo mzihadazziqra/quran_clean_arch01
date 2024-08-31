@@ -1,8 +1,8 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:quran_clean_arch/core/data/database/last_read.dart';
 
-import '../../../../core/data/database/bookmark.dart';
-import '../../../../core/data/database/database_helper.dart';
+import '../../../../core/database/database/bookmark.dart';
+import '../../../../core/database/database/database_helper.dart';
+import '../../../../core/database/database/last_read.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failure.dart';
 import '../../domain/entities/quran_surah.dart';

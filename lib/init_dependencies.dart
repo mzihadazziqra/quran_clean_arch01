@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'core/data/database/database_helper.dart';
+import 'core/database/audio/just_audio_provider.dart';
+import 'core/database/database/database_helper.dart';
 import 'features/bookmark/data/repositories/bookmark_repository_impl.dart';
 import 'features/bookmark/domain/repositories/bookmark_repository.dart';
 import 'features/bookmark/domain/usecases/get_all_bookmark.dart';
@@ -13,7 +14,6 @@ import 'features/surah/presentation/bloc/bookmark_surah_bloc/bookmark_surah_bloc
 import 'features/surah/presentation/bloc/detail_surah_bloc/detail_surah_bloc.dart';
 import 'features/surah/presentation/bloc/last_read/last_read_bloc.dart';
 
-import 'core/data/audio/just_audio_provider.dart';
 import 'core/domain/audio_provider.dart';
 import 'core/network/connection_checker.dart';
 import 'features/surah/data/datasources/surah_local_data_source.dart';

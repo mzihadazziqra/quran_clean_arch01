@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../../../core/data/database/last_read.dart';
+import '../../../../core/database/database/last_read.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../repositories/surah_repository.dart';

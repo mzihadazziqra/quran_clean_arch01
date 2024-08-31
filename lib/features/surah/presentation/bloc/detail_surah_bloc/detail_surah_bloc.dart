@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../../core/data/database/last_read.dart';
+import '../../../../../core/database/database/last_read.dart';
 import '../../../domain/entities/quran_surah.dart';
 import '../../../domain/usecases/get_surah_by_id.dart';
 import '../../../domain/usecases/insert_last_read.dart';

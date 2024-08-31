@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../../core/data/database/last_read.dart';
+import '../../../../../core/database/database/last_read.dart';
 import '../../../../../core/usecase/usecase.dart';
 import '../../../domain/usecases/get_last_read.dart';
 

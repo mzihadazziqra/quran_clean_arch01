@@ -2,7 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:quran_clean_arch/core/error/failure.dart';
 import 'package:quran_clean_arch/core/usecase/usecase.dart';
 
-import '../../../../core/data/database/bookmark.dart';
+import '../../../../core/database/database/bookmark.dart';
 import '../entities/quran_surah.dart';
 import '../repositories/surah_repository.dart';
 

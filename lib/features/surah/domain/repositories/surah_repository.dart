@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../../../core/data/database/bookmark.dart';
-import '../../../../core/data/database/last_read.dart';
+import '../../../../core/database/database/bookmark.dart';
+import '../../../../core/database/database/last_read.dart';
 import '../../../../core/error/failure.dart';
 import '../entities/quran_surah.dart';
 

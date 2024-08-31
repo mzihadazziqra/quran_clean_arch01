@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/data/database/bookmark.dart';
+import '../../../../core/database/database/bookmark.dart';
 import '../../../../core/theme/app_color.dart';
 
 class BookmarkCard extends StatelessWidget {

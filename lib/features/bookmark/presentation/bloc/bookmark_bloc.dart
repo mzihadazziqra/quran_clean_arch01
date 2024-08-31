@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../core/data/database/bookmark.dart';
+import '../../../../core/database/database/bookmark.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../../domain/usecases/get_all_bookmark.dart';
 

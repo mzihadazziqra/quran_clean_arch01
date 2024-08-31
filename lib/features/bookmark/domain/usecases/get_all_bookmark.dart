@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 
-import '../../../../core/data/database/bookmark.dart';
+import '../../../../core/database/database/bookmark.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../repositories/bookmark_repository.dart';
