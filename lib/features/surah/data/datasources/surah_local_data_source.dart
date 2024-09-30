@@ -14,8 +14,8 @@ class SurahLocalDataSourceImpl extends SurahLocalDataSource {
   @override
   Future<List<QuranSurahModel>> getAllSurah() async {
     try {
-      String jsonString =
-          await rootBundle.loadString('lib/core/data/quran/all_surahs.json');
+      String jsonString = await rootBundle
+          .loadString('lib/core/database/quran/all_surahs.json');
 
       List<dynamic> jsonList = json.decode(jsonString);
       List<QuranSurahModel> surahList = QuranSurahModel.fromJsonList(jsonList);
@@ -29,7 +29,7 @@ class SurahLocalDataSourceImpl extends SurahLocalDataSource {
   @override
   Future<List<QuranSurahModel>> getSurahById(int id) async {
     final response =
-        await rootBundle.loadString("lib/core/data/quran/all_surahs.json");
+        await rootBundle.loadString("lib/core/database/quran/all_surahs.json");
     final decodedResponse = json.decode(response);
 
     if (decodedResponse is! List) {
