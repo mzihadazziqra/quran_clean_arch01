@@ -1,5 +1,6 @@
 part of 'bookmark_surah_bloc.dart';
 
+// Kelas abstrak untuk event-event terkait dengan manajemen bookmark surah
 sealed class BookmarkSurahEvent extends Equatable {
   const BookmarkSurahEvent();
 
@@ -7,6 +8,7 @@ sealed class BookmarkSurahEvent extends Equatable {
   List<Object> get props => [];
 }
 
+// Event ketika sebuah bookmark ditambahkan
 class BookmarkAdded extends BookmarkSurahEvent {
   final Ayah ayat;
   final int nomorSurah;
@@ -26,6 +28,7 @@ class BookmarkAdded extends BookmarkSurahEvent {
   List<Object> get props => [ayat, nomorSurah, numberInJuz];
 }
 
+// Event ketika sebuah bookmark dihapus
 class BookmarkRemoved extends BookmarkSurahEvent {
   final int id;
 
@@ -35,4 +38,5 @@ class BookmarkRemoved extends BookmarkSurahEvent {
   List<Object> get props => [id];
 }
 
+// Event untuk mengambil daftar bookmarks yang tersimpan
 class BookmarksFetched extends BookmarkSurahEvent {}

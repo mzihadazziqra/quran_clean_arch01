@@ -5,15 +5,18 @@ import '../../../../core/theme/app_color.dart';
 import '../../../../core/utils/src/img_string.dart';
 import '../../domain/entities/quran_surah.dart';
 
+/// Widget untuk menampilkan kartu surah dalam daftar surah.
 class SurahCard extends StatelessWidget {
-  final QuranSurah surah;
-  final Function()? onPressed;
+  final QuranSurah surah; // Data surah yang akan ditampilkan.
+  final Function()? onPressed; // Callback ketika kartu surah ditekan.
 
+  /// Constructor untuk membuat instance SurahCard.
   const SurahCard({
     super.key,
     required this.surah,
     this.onPressed,
   });
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

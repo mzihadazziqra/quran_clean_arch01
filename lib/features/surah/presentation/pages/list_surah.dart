@@ -14,15 +14,20 @@ class ListSurah extends StatelessWidget {
       body: BlocBuilder<SurahBloc, SurahState>(
         builder: (context, state) {
           if (state is SurahLoading) {
+            // Menampilkan loader saat data sedang dimuat
             return const Loader();
           } else if (state is SurahDisplaySuccess) {
+            // Menampilkan daftar surah jika data berhasil dimuat
             return ListView.builder(
               itemCount: state.surahs.length,
               itemBuilder: (context, index) {
                 final surah = state.surahs[index];
+
+                // Menampilkan SurahCard untuk setiap item surah
                 return SurahCard(
                   surah: surah,
                   onPressed: () {
+                    // Navigasi ke halaman detail surah saat surah dipilih
                     Navigator.pushNamed(
                       context,
                       '/detail_surah',

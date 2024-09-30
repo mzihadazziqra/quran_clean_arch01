@@ -9,6 +9,7 @@ import '../bloc/bookmark_surah_bloc/bookmark_surah_bloc.dart';
 import 'bookmark_icon.dart';
 import 'tafsir_info.dart';
 
+// Widget ayat card yang akan digunakan pada detail surah
 class AyatCard extends StatefulWidget {
   final Ayah ayat;
   final String namaSurah;
@@ -29,6 +30,7 @@ class AyatCard extends StatefulWidget {
   State<AyatCard> createState() => _AyatCardState();
 }
 
+// Widget ayat card yang akan digunakan pada detail surah
 class _AyatCardState extends State<AyatCard> {
   bool _isBookmarked = false;
   bool _isPlaying = false;
@@ -107,6 +109,7 @@ class _AyatCardState extends State<AyatCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Arabic Text
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 10,
@@ -128,6 +131,7 @@ class _AyatCardState extends State<AyatCard> {
               ),
             ),
 
+            // Divider
             Container(
               height: 1,
               width: double.infinity,
@@ -255,6 +259,7 @@ class _AyatCardState extends State<AyatCard> {
     );
   }
 
+  // Function untuk Audio Icon
   Widget _buildAudioIcon(BuildContext context) {
     return BlocBuilder<AudioBloc, AudioState>(
       builder: (context, state) {

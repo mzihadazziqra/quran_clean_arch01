@@ -5,8 +5,17 @@ import 'package:flutter/services.dart';
 import '../../../../core/error/exceptions.dart';
 import '../models/quran_surah_model.dart';
 
+// Abstract class untuk di extends oleh class implementation
 abstract class SurahLocalDataSource {
+  /// Mengambil seluruh data surah.
+  /// Mengembalikan `Future` yang berisi `List<QuranSurahModel>` jika berhasil,
+  /// atau melempar `LocalException` jika terjadi kesalahan.
   Future<List<QuranSurahModel>> getAllSurah();
+
+  /// Mengambil data surah berdasarkan ID.
+  /// [id] adalah ID surah yang ingin diambil.
+  /// Mengembalikan `Future` yang berisi `List<QuranSurahModel>` jika berhasil,
+  /// atau melempar `LocalException` jika terjadi kesalahan atau surah tidak ditemukan.
   Future<List<QuranSurahModel>> getSurahById(int id);
 }
 

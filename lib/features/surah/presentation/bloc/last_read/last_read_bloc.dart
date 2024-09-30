@@ -8,6 +8,7 @@ import '../../../domain/usecases/get_last_read.dart';
 part 'last_read_event.dart';
 part 'last_read_state.dart';
 
+// Kelas untuk mengelola logika bisnis terkait data terakhir yang dibaca (Last Read)
 class LastReadBloc extends Bloc<LastReadEvent, LastReadState> {
   final GetLastRead _getLastRead;
 
@@ -18,6 +19,7 @@ class LastReadBloc extends Bloc<LastReadEvent, LastReadState> {
     on<FetchLastRead>(_onFetchLastRead);
   }
 
+  // Method untuk meng-handle event FetchLastRead
   void _onFetchLastRead(
       FetchLastRead event, Emitter<LastReadState> emit) async {
     emit(LastReadLoading());

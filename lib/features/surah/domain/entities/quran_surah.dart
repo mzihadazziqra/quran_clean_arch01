@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+// Entittas untuk quran surah
 class QuranSurah extends Equatable {
   final String? revelation;
   final int? nomor;

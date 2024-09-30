@@ -5,6 +5,7 @@ import '../../../../core/error/failure.dart';
 import '../../../../core/usecase/usecase.dart';
 import '../repositories/bookmark_repository.dart';
 
+/// Use case untuk mendapatkan semua bookmark.
 class GetAllBookmark implements Usecase<List<Bookmark>, NoParams> {
   final BookmarkRepository repository;
 

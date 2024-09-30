@@ -8,6 +8,7 @@ import '../../domain/usecases/get_all_bookmark.dart';
 part 'bookmark_event.dart';
 part 'bookmark_state.dart';
 
+/// Bloc untuk mengelola state terkait dengan bookmarks.
 class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
   final GetAllBookmark _getAllBookmarks;
 

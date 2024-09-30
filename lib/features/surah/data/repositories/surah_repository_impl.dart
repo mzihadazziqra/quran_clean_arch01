@@ -1,5 +1,4 @@
 import 'package:fpdart/fpdart.dart';
-
 import '../../../../core/database/database/bookmark.dart';
 import '../../../../core/database/database/database_helper.dart';
 import '../../../../core/database/database/last_read.dart';
@@ -15,6 +14,7 @@ class SurahRepositoryImpl extends SurahRepository {
 
   SurahRepositoryImpl(this.surahLocalDataSource, this.databaseHelper);
 
+  // Mendapatkan semua surah dari sumber data lokal.
   @override
   Future<Either<Failure, List<QuranSurah>>> getAllSurah() async {
     try {
@@ -26,6 +26,7 @@ class SurahRepositoryImpl extends SurahRepository {
     }
   }
 
+  // Menambahkan bookmark baru ke database.
   @override
   Future<Either<Failure, void>> addBookmark(
     Ayah ayat,
@@ -42,53 +43,62 @@ class SurahRepositoryImpl extends SurahRepository {
         namaSurah,
         via,
       );
+
       return right(null);
     } on LocalException catch (e) {
       return left(Failure(e.toString()));
     }
   }
 
+  // Mendapatkan semua bookmark dari database.
   @override
   Future<Either<Failure, List<Bookmark>>> getBookmarks() async {
-    // Ubah tipe kembalian
     try {
       final bookmarks = await databaseHelper.getBookmarks();
+
       return right(bookmarks);
     } on LocalException catch (e) {
       return left(Failure(e.toString()));
     }
   }
 
+  // Menghapus bookmark berdasarkan id dari database.
   @override
   Future<Either<Failure, void>> removeBookmark(int id) async {
     try {
       await databaseHelper.deleteBookmark(id);
+
       return right(null);
     } on LocalException catch (e) {
       return left(Failure(e.toString()));
     }
   }
 
+  // Mendapatkan surah berdasarkan id dari sumber data lokal.
   @override
   Future<Either<Failure, List<QuranSurah>>> getSurahById(int id) async {
     try {
       final surah = await surahLocalDataSource.getSurahById(id);
+
       return right(surah);
     } on LocalException catch (e) {
       return left(Failure(e.message));
     }
   }
 
+  // Menyimpan data bacaan terakhir ke database.
   @override
   Future<Either<Failure, void>> insertLastRead(LastRead lastRead) async {
     try {
       await databaseHelper.insertLastRead(lastRead);
+
       return right(null);
     } on LocalException catch (e) {
       return left(Failure(e.message));
     }
   }
 
+  // Mendapatkan data bacaan terakhir dari database.
   @override
   Future<Either<Failure, LastRead>> getLastRead() async {
     try {

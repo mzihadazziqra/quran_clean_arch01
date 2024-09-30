@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_color.dart';
 import '../../domain/entities/quran_surah.dart';
 
+/// Widget untuk menampilkan informasi tafsir suatu ayat dalam sebuah surah.
 class TafsirInfo extends StatelessWidget {
   final Tafsir tafisr;
   final String namaSurah;
   final int nomor;
+
+  /// Constructor untuk membuat instance TafsirInfo.
   const TafsirInfo({
     super.key,
     required this.tafisr,

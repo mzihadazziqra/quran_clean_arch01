@@ -8,6 +8,7 @@ import '../../../domain/usecases/get_all_surah.dart';
 part 'surah_event.dart';
 part 'surah_state.dart';
 
+// Bloc untuk mengelola state terkait daftar surah Al-Quran
 class SurahBloc extends Bloc<SurahEvent, SurahState> {
   final GetAllSurah _getAllSurah;
 
@@ -18,6 +19,7 @@ class SurahBloc extends Bloc<SurahEvent, SurahState> {
     on<SurahFetchAllSurahs>(_onFetchAllSurah);
   }
 
+  // Method private untuk meng-handle event SurahFetchAllSurahs
   void _onFetchAllSurah(
       SurahFetchAllSurahs event, Emitter<SurahState> emit) async {
     emit(SurahLoading());

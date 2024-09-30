@@ -1,3 +1,4 @@
+// ignore_for_file: no-empty-block
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,6 +7,7 @@ import '../../../../core/theme/app_color.dart';
 import '../../../../core/utils/src/img_string.dart';
 import '../bloc/last_read/last_read_bloc.dart';
 
+// Widget banner last read yang akan ditampilkan pada halaman home
 class LastReadBanner extends StatelessWidget {
   const LastReadBanner({
     super.key,
@@ -31,6 +33,7 @@ class LastReadBanner extends StatelessWidget {
               arguments: {
                 'nomorSurah': nomorSurah,
                 'namaSurah': namaSurah,
+                // Mengirimkan index ayat berdasarkan nomor ayat terakhir
                 'indexAyat': nomorAyat! - 1,
               },
             );

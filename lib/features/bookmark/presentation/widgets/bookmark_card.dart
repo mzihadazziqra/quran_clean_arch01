@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/database/database/bookmark.dart';
 import '../../../../core/theme/app_color.dart';
 
+// class widget bookmark card
 class BookmarkCard extends StatelessWidget {
   final Bookmark bookmark;
   final int index;

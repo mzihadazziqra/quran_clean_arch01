@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Font yang digunakan aplikasi
 class AppFont {
   static TextStyle get h1 =>
       const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);

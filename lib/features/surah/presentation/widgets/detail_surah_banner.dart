@@ -5,6 +5,7 @@ import '../../../../core/theme/theme.dart';
 import '../../../../core/utils/src/img_string.dart';
 import '../../domain/entities/quran_surah.dart';
 
+// Widget untuk banner untuk detail surah
 class DetailSurahBanner extends StatelessWidget {
   final QuranSurah surah;
   final Function()? onPressed;
@@ -53,6 +54,7 @@ class DetailSurahBanner extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          // Informasi nama surah dan arti
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -85,6 +87,7 @@ class DetailSurahBanner extends StatelessWidget {
                               ),
                             ],
                           ),
+                          // Informasi nomor surah dan jumlah ayat
                           Column(
                             children: [
                               const Text(

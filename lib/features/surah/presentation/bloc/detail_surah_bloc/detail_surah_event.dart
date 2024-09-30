@@ -1,5 +1,6 @@
 part of 'detail_surah_bloc.dart';
 
+// Kelas abstrak untuk event-event terkait dengan detail surah Al-Quran
 sealed class DetailSurahEvent extends Equatable {
   const DetailSurahEvent();
 
@@ -7,6 +8,7 @@ sealed class DetailSurahEvent extends Equatable {
   List<Object> get props => [];
 }
 
+// Event untuk mengambil detail surah berdasarkan ID surah
 class DetailSurahFetchById extends DetailSurahEvent {
   final int nomorSurah;
 
@@ -16,8 +18,10 @@ class DetailSurahFetchById extends DetailSurahEvent {
   List<Object> get props => [nomorSurah];
 }
 
+// Event untuk mendapatkan data terakhir yang dibaca
 class GetLastReadEvent extends DetailSurahEvent {}
 
+// Event untuk menyimpan data terakhir yang dibaca
 class InsertLastReadEvent extends DetailSurahEvent {
   final int nomorSurah;
   final int nomorAyat;

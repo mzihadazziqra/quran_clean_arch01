@@ -18,6 +18,7 @@ void main() async {
   await initDependencies();
   await GetStorage.init();
   runApp(MultiBlocProvider(
+    // Deklarasi Providers
     providers: [
       BlocProvider(
         create: (_) => serviceLocator<SurahBloc>(),
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomePage(),
       },
+      // Detail surah dengan argumen
       onGenerateRoute: (settings) {
         if (settings.name == '/detail_surah') {
           final args = settings.arguments as Map<String, dynamic>;

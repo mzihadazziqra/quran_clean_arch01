@@ -1,5 +1,8 @@
+// ignore_for_file: avoid-dynamic
+
 import 'package:quran_clean_arch/features/surah/domain/entities/quran_surah.dart';
 
+// Model yang akan menerima data surah
 class QuranSurahModel extends QuranSurah {
   const QuranSurahModel({
     required super.revelation,
@@ -59,6 +62,7 @@ class QuranSurahModel extends QuranSurah {
   }
 }
 
+// Model yang akan menerima data audio
 class AudioFullModel extends AudioFull {
   const AudioFullModel({
     required super.abdullahAlJuhany,
@@ -88,6 +92,7 @@ class AudioFullModel extends AudioFull {
       };
 }
 
+// Model yang akan menerima data ayat
 class AyahModel extends Ayah {
   const AyahModel({
     required super.id,
@@ -130,6 +135,7 @@ class AyahModel extends Ayah {
       };
 }
 
+// Model yang akan menerima data audio ayat
 class AudioModel extends Audio {
   const AudioModel({
     required super.alafasy,
@@ -162,6 +168,7 @@ class AudioModel extends Audio {
       };
 }
 
+// Model yang akan menerima data image
 class ImageModel extends Image {
   const ImageModel({
     required super.primary,
@@ -182,6 +189,7 @@ class ImageModel extends Image {
       };
 }
 
+// Model yang akan menerima data juz dan lain lain
 class MetaModel extends Meta {
   const MetaModel({
     required super.juz,
@@ -214,6 +222,7 @@ class MetaModel extends Meta {
       };
 }
 
+// Model yang akan menerima data sajda
 class SajdaModel extends Sajda {
   const SajdaModel({
     required super.recommended,
@@ -234,6 +243,7 @@ class SajdaModel extends Sajda {
       };
 }
 
+// Model yang akan menerima data nomor ayat
 class NumberModel extends Number {
   const NumberModel({
     required super.inQuran,
@@ -254,6 +264,7 @@ class NumberModel extends Number {
       };
 }
 
+// Model yang akan menerima data tafsir
 class TafsirModel extends Tafsir {
   const TafsirModel({
     required super.kemenag,
@@ -279,6 +290,7 @@ class TafsirModel extends Tafsir {
       };
 }
 
+// Model yang akan menerima data tafsir kemenag
 class KemenagModel extends Kemenag {
   const KemenagModel({
     required super.short,
@@ -299,6 +311,7 @@ class KemenagModel extends Kemenag {
       };
 }
 
+// Model yang akan menerima data surah
 class SurahModel extends Surah {
   const SurahModel({
     required super.nomor,

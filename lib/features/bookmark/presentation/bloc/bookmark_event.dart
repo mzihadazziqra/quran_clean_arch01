@@ -1,5 +1,6 @@
 part of 'bookmark_bloc.dart';
 
+/// Abstract class untuk semua event terkait bookmarks.
 abstract class BookmarkEvent extends Equatable {
   const BookmarkEvent();
 

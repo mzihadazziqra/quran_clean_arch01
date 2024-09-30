@@ -9,11 +9,13 @@ import '../../../domain/usecases/bookmark.dart';
 part 'bookmark_surah_event.dart';
 part 'bookmark_surah_state.dart';
 
+// Bloc untuk mengelola state terkait dengan bookmark surah
 class BookmarkSurahBloc extends Bloc<BookmarkSurahEvent, BookmarkSurahState> {
   final AddBookmark _addBookmark;
   final RemoveBookmark _removeBookmark;
   final GetBookmarks _getBookmarks;
 
+  // Konstruktor untuk menginisialisasi use cases yang diperlukan dan initial state
   BookmarkSurahBloc({
     required AddBookmark addBookmark,
     required RemoveBookmark removeBookmark,
@@ -27,6 +29,7 @@ class BookmarkSurahBloc extends Bloc<BookmarkSurahEvent, BookmarkSurahState> {
     on<BookmarksFetched>(_onBookmarksFetched);
   }
 
+  // Handler untuk event BookmarkAdded
   void _onBookmarkAdded(
       BookmarkAdded event, Emitter<BookmarkSurahState> emit) async {
     emit(BookmarkLoading());
@@ -38,24 +41,28 @@ class BookmarkSurahBloc extends Bloc<BookmarkSurahEvent, BookmarkSurahState> {
       via: event.via,
     ));
 
+    // Handle hasil dari addBookmark
     failureOrSuccess.fold(
       (failure) => emit(BookmarkFailure(failure.message)),
       (_) => emit(BookmarkSuccess()),
     );
   }
 
+  // Handler untuk event BookmarkRemoved
   void _onBookmarkRemoved(
       BookmarkRemoved event, Emitter<BookmarkSurahState> emit) async {
     emit(BookmarkLoading());
     final failureOrSuccess = await _removeBookmark(event.id);
 
+    // Handle hasil dari removeBookmark
     failureOrSuccess.fold(
       (failure) => emit(BookmarkFailure(failure.message)),
-      (_) => emit(BookmarkSuccess()), // After removing, fetch the updated list
+      (_) => emit(BookmarkSuccess()),
     );
-    add(BookmarksFetched()); // Memicu pengambilan ulang daftar bookmark setelah dihapus
+    add(BookmarksFetched());
   }
 
+  // Handler untuk event BookmarksFetched
   void _onBookmarksFetched(
       BookmarksFetched event, Emitter<BookmarkSurahState> emit) async {
     emit(BookmarkLoading());

@@ -6,6 +6,7 @@ import '../../../../core/common/widgets/loader.dart';
 import '../bloc/bookmark_bloc.dart';
 import '../widgets/bookmark_card.dart';
 
+/// Halaman untuk menampilkan daftar bookmark.
 class BookmarkPage extends StatefulWidget {
   const BookmarkPage({super.key});
 
@@ -17,6 +18,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
   @override
   void initState() {
     super.initState();
+    // Memuat daftar bookmarks saat halaman diinisialisasi
     context.read<BookmarkBloc>().add(LoadBookmarks());
   }
 
@@ -27,8 +29,11 @@ class _BookmarkPageState extends State<BookmarkPage> {
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<BookmarkBloc, BookmarkState>(
           builder: (context, state) {
+            // Saat sedang memuat data bookmarks
+
             if (state is BookmarkLoading) {
               return const Loader();
+              // Jika bookmarks berhasil dimuat dan tidak ada data
             } else if (state is BookmarksLoaded) {
               if (state.bookmarks.isEmpty) {
                 return const Center(
@@ -53,6 +58,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
                   ),
                 );
               }
+              // Saat berhasil dimuat dan terdapat data bookmarks
               return ListView.builder(
                 itemCount: state.bookmarks.length,
                 itemBuilder: (context, index) {
@@ -75,11 +81,14 @@ class _BookmarkPageState extends State<BookmarkPage> {
                   );
                 },
               );
+              // Jika terjadi error saat memuat bookmarks
             } else if (state is BookmarkError) {
               return Center(
                 child: Text(state.message),
               );
-            } else {
+            }
+            // State awal saat belum ada data dimuat
+            else {
               return const Center(
                 child: Column(
                   children: [

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+// Widget untuk menampilkan pengaturan tampilan pada halaman detail surah
 class DetailSurahSettings extends StatefulWidget {
   final bool showTranslation;
   final bool showLatin;
   final Function(bool) onTranslationChanged;
   final Function(bool) onLatinChanged;
+
   const DetailSurahSettings({
     super.key,
     required this.showTranslation,
@@ -18,12 +20,13 @@ class DetailSurahSettings extends StatefulWidget {
 }
 
 class _DetailSurahSettingsState extends State<DetailSurahSettings> {
-  bool _showTranslation = false;
-  bool _showLatin = false;
+  bool _showTranslation = false; // State untuk menyimpan status terjemahan
+  bool _showLatin = false; // State untuk menyimpan status teks Latin
 
   @override
   void initState() {
     super.initState();
+    // Inisialisasi nilai state berdasarkan properti widget
     _showTranslation = widget.showTranslation;
     _showLatin = widget.showLatin;
   }
@@ -48,6 +51,7 @@ class _DetailSurahSettingsState extends State<DetailSurahSettings> {
             const SizedBox(
               height: 10,
             ),
+            // Widget untuk mengatur tampilan terjemahan
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -63,6 +67,7 @@ class _DetailSurahSettingsState extends State<DetailSurahSettings> {
                 ),
               ],
             ),
+            // Widget untuk mengatur tampilan teks Latin
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

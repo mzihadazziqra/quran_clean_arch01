@@ -5,19 +5,23 @@ import '../../../features/surah/domain/entities/quran_surah.dart';
 import 'bookmark.dart';
 import 'last_read.dart';
 
+/// Kelas helper untuk mengelola database SQLite.
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._init();
   static Database? _database;
 
   DatabaseHelper._init();
 
+  /// Mendapatkan instance dari database.
   Future<Database> get database async {
     if (_database != null) return _database!;
 
     _database = await _initDB('quran.db');
+
     return _database!;
   }
 
+  /// Inisialisasi database.
   Future<Database> _initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
@@ -25,7 +29,8 @@ class DatabaseHelper {
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
-  Future _createDB(Database db, int version) async {
+  /// Membuat struktur tabel-tabel di database.
+  Future<void> _createDB(Database db, int version) async {
     await db.execute('''
       CREATE TABLE bookmarks (
         id INTEGER PRIMARY KEY,
@@ -37,9 +42,8 @@ class DatabaseHelper {
         namaSurah TEXT, 
         via TEXT
       )
-      ''');
+    ''');
 
-    // Membuat tabel last_read
     await db.execute('''
       CREATE TABLE last_read (
         id INTEGER PRIMARY KEY,
@@ -51,6 +55,7 @@ class DatabaseHelper {
     ''');
   }
 
+  /// Menyimpan bookmark ke dalam tabel bookmarks.
   Future<int> insertBookmark(
     Ayah ayat,
     int nomorSurah,
@@ -59,6 +64,7 @@ class DatabaseHelper {
     String via,
   ) async {
     final db = await instance.database;
+
     return await db.insert('bookmarks', {
       'numberInSurah': ayat.number?.inSurah,
       'arab': ayat.arab,
@@ -71,6 +77,7 @@ class DatabaseHelper {
     });
   }
 
+  /// Mengambil daftar semua bookmark dari tabel bookmarks.
   Future<List<Bookmark>> getBookmarks() async {
     final db = await instance.database;
     final List<Map<String, dynamic>> maps = await db.query('bookmarks');
@@ -99,11 +106,14 @@ class DatabaseHelper {
     });
   }
 
+  /// Menghapus bookmark berdasarkan ID dari tabel bookmarks.
   Future<int> deleteBookmark(int id) async {
     final db = await instance.database;
+
     return await db.delete('bookmarks', where: 'id = ?', whereArgs: [id]);
   }
 
+  /// Menyimpan data last read ke dalam tabel last_read.
   Future<int> insertLastRead(LastRead lastRead) async {
     final db = await instance.database;
 
@@ -112,6 +122,7 @@ class DatabaseHelper {
     return await db.insert('last_read', lastRead.toMap());
   }
 
+  /// Mengambil data last read dari tabel last_read.
   Future<LastRead?> getLastRead() async {
     try {
       final db = await instance.database;
@@ -119,6 +130,7 @@ class DatabaseHelper {
       if (maps.isNotEmpty) {
         return LastRead.fromMap(maps.first);
       }
+
       return null;
     } catch (e) {
       return null;

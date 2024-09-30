@@ -4,21 +4,19 @@ import 'app_color.dart';
 export 'app_font.dart';
 export 'app_color.dart';
 
+// Warna yang dipakai aplikasi
 class AppTheme {
   static final lightTheme = ThemeData.light().copyWith(
-    
-    colorScheme: const ColorScheme.light(
-      surface: AppColor.backgroundColor,
-      primary: AppColor.primary1,
-      secondary: AppColor.secondary,
-    ),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: AppColor.backgroundColor,
-    ),
-    scaffoldBackgroundColor: AppColor.backgroundColor,
-    iconTheme: const IconThemeData(
-      color: AppColor.primary1,
-    )
-  );
-  
+      colorScheme: const ColorScheme.light(
+        surface: AppColor.backgroundColor,
+        primary: AppColor.primary1,
+        secondary: AppColor.secondary,
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColor.backgroundColor,
+      ),
+      scaffoldBackgroundColor: AppColor.backgroundColor,
+      iconTheme: const IconThemeData(
+        color: AppColor.primary1,
+      ));
 }

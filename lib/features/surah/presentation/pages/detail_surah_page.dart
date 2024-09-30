@@ -29,6 +29,7 @@ class DetailSurahPage extends StatefulWidget {
     required this.namaSurah,
   });
 
+  // Route untuk membuka halaman detail surah dengan argumen yang diberikan
   static Route<dynamic> route(RouteSettings settings) {
     final args = settings.arguments as Map<String, dynamic>;
 
@@ -57,21 +58,26 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
   @override
   void initState() {
     super.initState();
+    // Menginisialisasi Bloc untuk mengambil detail surah
     detailSurahBloc = context.read<DetailSurahBloc>();
     detailSurahBloc.add(DetailSurahFetchById(widget.nomorSurah));
     context.read<BookmarkSurahBloc>().add(BookmarksFetched());
+    // Menggunakan addPostFrameCallback untuk menjalankan scrollToIndex setelah widget dirender
     WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollToIndex();
     });
+    // Mengambil dan memuat pengaturan terakhir dari GetStorage
     _loadSettings();
   }
 
+  // Memuat pengaturan terakhir dari GetStorage
   void _loadSettings() {
     showTranslation = _box.read('showTranslation') ?? true;
     showLatin = _box.read('showLatin') ?? true;
     setState(() {});
   }
 
+  // Menangani perubahan pada pengaturan tampilan terjemahan
   void _onTranslationChanged(bool value) {
     setState(() {
       showTranslation = value;
@@ -79,6 +85,7 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
     });
   }
 
+  // Menangani perubahan pada pengaturan tampilan teks latin
   void _onLatinChanged(bool value) {
     setState(() {
       showLatin = value;
@@ -86,6 +93,7 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
     });
   }
 
+  // Mengscroll ke index ayat yang diberikan jika ada
   void scrollToIndex() {
     if (widget.indexAyat != null) {
       _scrollController.scrollToIndex(
@@ -95,6 +103,7 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
     }
   }
 
+  // Menangani perubahan visibilitas ayat untuk menentukan ayat terakhir dibaca
   void _onVisibilityChanged(int index, bool visible) {
     if (visible) {
       setState(() {
@@ -105,7 +114,9 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
 
   @override
   void dispose() {
+    // Mendapatkan state terakhir dari Bloc DetailSurahBloc
     final detailSurahState = detailSurahBloc.state;
+    // Jika state adalah DetailSurahSuccess, menambahkan event InsertLastReadEvent
     if (detailSurahState is DetailSurahSuccess) {
       final surah = detailSurahState.surah;
       detailSurahBloc.add(InsertLastReadEvent(
@@ -126,6 +137,7 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
         actions: [
           IconButton(
             onPressed: () {
+              // Menampilkan bottom sheet untuk pengaturan detail surah
               showModalBottomSheet(
                 context: context,
                 builder: (context) => DetailSurahSettings(
@@ -146,9 +158,11 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
       ),
       body: MultiBlocProvider(
         providers: [
+          // Menyediakan AudioBloc ke dalam MultiBlocProvider
           BlocProvider<AudioBloc>(
             create: (context) => serviceLocator<AudioBloc>(),
           ),
+          // Menyediakan BookmarkSurahBloc ke dalam MultiBlocProvider
           BlocProvider<BookmarkSurahBloc>(
             create: (context) => serviceLocator<BookmarkSurahBloc>(),
           ),
@@ -160,13 +174,18 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
             } else if (state is DetailSurahSuccess) {
               return BlocBuilder<BookmarkSurahBloc, BookmarkSurahState>(
                 builder: (context, bookmarkState) {
+                  // Memuat ulang daftar bookmark saat berhasil memuat detail surah
                   context.read<BookmarkSurahBloc>().add(BookmarksFetched());
+
+                  // Menampilkan daftar ayat dari surah yang dimuat
                   return ListView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     controller: _scrollController,
                     itemCount: state.surah.ayahs.length,
                     itemBuilder: (context, index) {
                       Ayah ayat = state.surah.ayahs[index];
+
+                      // Menyematkan VisibilityDetector untuk mendeteksi visibilitas ayat
                       return VisibilityDetector(
                         key: Key('ayat-$index'),
                         onVisibilityChanged: (VisibilityInfo info) {
@@ -183,11 +202,13 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
                               if (ayat.number?.inSurah == 1)
                                 Column(
                                   children: [
+                                    // Menampilkan banner surah untuk surah awal
                                     DetailSurahBanner(
                                       onPressed: () {},
                                       surah: state.surah,
                                     ),
                                     const SizedBox(height: 20),
+                                    // Menampilkan komponen Bismillah untuk surah kecuali surah 1 dan 9
                                     if (state.surah.nomor != 1 &&
                                         state.surah.nomor != 9)
                                       Padding(
@@ -201,6 +222,8 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
                                       ),
                                   ],
                                 ),
+
+                              // Menyediakan AudioBloc dan BookmarkSurahBloc ke AyatCard
                               BlocProvider.value(
                                 value: BlocProvider.of<AudioBloc>(context),
                                 child: BlocProvider.value(

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+/// Kelas untuk merepresentasikan data terakhir yang dibaca dalam Al-Quran.
 class LastRead extends Equatable {
   final int? id;
   final int nomorSurah;
@@ -15,6 +16,7 @@ class LastRead extends Equatable {
     required this.via,
   });
 
+  /// Membuat instance LastRead dari Map.
   factory LastRead.fromMap(Map<String, dynamic> map) {
     return LastRead(
       id: map['id'],
@@ -25,6 +27,7 @@ class LastRead extends Equatable {
     );
   }
 
+  /// Mengubah instance LastRead menjadi Map.
   Map<String, dynamic> toMap() {
     return {
       'id': id,
