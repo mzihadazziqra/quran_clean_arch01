@@ -91,8 +91,8 @@ class SurahCard extends StatelessWidget {
                 ],
               ),
             ),
-            const Divider(
-              color: AppColor.secondary,
+            Divider(
+              color: AppColor.divider,
               height: 2,
             ),
           ],

@@ -38,48 +38,51 @@ class _HomePageState extends State<HomePage> {
           'Al-Quran Indonesia',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: AppColor.textPrimary,
+            color: AppColor.primary2,
           ),
         ),
       ),
-      body: DefaultTabController(
-        length: 2,
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: LastReadBanner(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: DefaultTabController(
+          length: 2,
+          child: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: LastReadBanner(),
+                ),
               ),
-            ),
-            BlocListener<DetailSurahBloc, DetailSurahState>(
-              listener: (context, state) {
-                if (state is InsertLastReadSuccess) {
-                  context.read<LastReadBloc>().add(FetchLastRead());
-                }
-              },
-              child: const SliverAppBar(
-                centerTitle: true,
-                elevation: 0,
-                pinned: true,
-                shape: Border(
-                  bottom: BorderSide(
-                    color: Colors.transparent,
+              BlocListener<DetailSurahBloc, DetailSurahState>(
+                listener: (context, state) {
+                  if (state is InsertLastReadSuccess) {
+                    context.read<LastReadBloc>().add(FetchLastRead());
+                  }
+                },
+                child: const SliverAppBar(
+                  centerTitle: true,
+                  elevation: 0,
+                  pinned: true,
+                  shape: Border(
+                    bottom: BorderSide(
+                      color: Colors.transparent,
+                    ),
+                  ),
+                  backgroundColor: AppColor.backgroundColor,
+                  bottom: PreferredSize(
+                    preferredSize: Size.fromHeight(10),
+                    child: HomeTabBar(),
                   ),
                 ),
-                backgroundColor: AppColor.backgroundColor,
-                bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(10),
-                  child: HomeTabBar(),
-                ),
               ),
-            ),
-          ],
-          body: const TabBarView(
-            children: [
-              ListSurah(),
-              BookmarkPage(),
             ],
+            body: const TabBarView(
+              children: [
+                ListSurah(),
+                BookmarkPage(),
+              ],
+            ),
           ),
         ),
       ),

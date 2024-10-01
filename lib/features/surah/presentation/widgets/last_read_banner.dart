@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../core/theme/app_color.dart';
 import '../../../../core/utils/src/img_string.dart';
 import '../bloc/last_read/last_read_bloc.dart';
 
@@ -22,7 +21,16 @@ class LastReadBanner extends StatelessWidget {
     return Ink(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: AppColor.secondary,
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          stops: [0, 0.6, 1],
+          colors: [
+            Color(0xFFDF98FA),
+            Color(0xFFB070FD),
+            Color(0xFF9055FF),
+          ],
+        ),
       ),
       child: InkWell(
         onTap: () {
@@ -45,11 +53,11 @@ class LastReadBanner extends StatelessWidget {
           child: Stack(
             children: [
               Positioned(
-                bottom: -8,
-                right: 5,
+                bottom: -20,
+                right: -20,
                 child: SvgPicture.asset(
                   ImgString.quran2_assets,
-                  height: 120,
+                  height: 130,
                 ),
               ),
               Padding(
@@ -65,7 +73,7 @@ class LastReadBanner extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.menu_book_rounded,
-                          color: AppColor.textPrimary,
+                          color: Colors.white,
                           size: 17,
                         ),
                         SizedBox(
@@ -76,7 +84,7 @@ class LastReadBanner extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 14,
-                            color: AppColor.textPrimary,
+                            color: Colors.white,
                           ),
                         ),
                       ],
@@ -105,7 +113,7 @@ class LastReadBanner extends StatelessWidget {
                               style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 20,
-                                color: AppColor.textPrimary,
+                                color: Colors.white,
                               ),
                             ),
                             const SizedBox(height: 1),
@@ -114,14 +122,13 @@ class LastReadBanner extends StatelessWidget {
                               style: const TextStyle(
                                 fontWeight: FontWeight.w300,
                                 fontSize: 15,
-                                color: AppColor.textSecondary,
+                                color: Colors.white,
                               ),
                             ),
                           ],
                         );
                       },
                     ),
-                    const SizedBox(height: 5),
                   ],
                 ),
               ),

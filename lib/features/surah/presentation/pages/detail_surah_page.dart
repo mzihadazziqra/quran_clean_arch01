@@ -150,7 +150,7 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
             },
             icon: const Icon(
               Icons.layers,
-              color: AppColor.primary1,
+              color: AppColor.primary2,
             ),
           ),
           const SizedBox(width: 20),
@@ -179,7 +179,7 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
 
                   // Menampilkan daftar ayat dari surah yang dimuat
                   return ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     controller: _scrollController,
                     itemCount: state.surah.ayahs.length,
                     itemBuilder: (context, index) {
@@ -213,11 +213,12 @@ class _DetailSurahPageState extends State<DetailSurahPage> {
                                         state.surah.nomor != 9)
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 20),
+                                          vertical: 20,
+                                        ),
                                         child: SvgPicture.asset(
                                           ImgString.bismillah_assets,
                                           // ignore: deprecated_member_use
-                                          color: AppColor.textPrimary,
+                                          color: AppColor.black,
                                         ),
                                       ),
                                   ],

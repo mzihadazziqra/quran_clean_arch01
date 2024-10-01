@@ -51,6 +51,8 @@ class BookmarkCard extends StatelessWidget {
                     height: 2,
                     fontFamily: 'Uthmani',
                   ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
               ),
             ),
@@ -69,7 +71,9 @@ class BookmarkCard extends StatelessWidget {
                   ),
                   child: Text(
                     '${index + 1}',
-                    style: const TextStyle(color: AppColor.primary1),
+                    style: const TextStyle(
+                      color: AppColor.white,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 16),

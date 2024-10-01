@@ -9,7 +9,7 @@ class AppTheme {
   static final lightTheme = ThemeData.light().copyWith(
       colorScheme: const ColorScheme.light(
         surface: AppColor.backgroundColor,
-        primary: AppColor.primary1,
+        primary: AppColor.primary2,
         secondary: AppColor.secondary,
       ),
       appBarTheme: const AppBarTheme(
@@ -17,6 +17,6 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: AppColor.backgroundColor,
       iconTheme: const IconThemeData(
-        color: AppColor.primary1,
+        color: AppColor.primary2,
       ));
 }

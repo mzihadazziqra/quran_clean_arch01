@@ -102,7 +102,7 @@ class _AyatCardState extends State<AyatCard> {
             BoxShadow(
               color: const Color.fromARGB(255, 79, 69, 82).withOpacity(0.1),
               offset: const Offset(3, 3),
-              blurRadius: 6,
+              blurRadius: 3,
             ),
           ],
         ),
@@ -124,7 +124,7 @@ class _AyatCardState extends State<AyatCard> {
                     fontFamily: "Uthmani",
                     height: 2.2,
                     fontSize: 27,
-                    color: AppColor.textPrimary,
+                    color: AppColor.black,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -133,9 +133,9 @@ class _AyatCardState extends State<AyatCard> {
 
             // Divider
             Container(
-              height: 1,
+              height: 0.5,
               width: double.infinity,
-              color: AppColor.secondary,
+              color: AppColor.divider,
             ),
 
             // Latin
@@ -152,15 +152,15 @@ class _AyatCardState extends State<AyatCard> {
                           widget.ayat.teksLatin ?? '',
                           textAlign: TextAlign.justify,
                           style: const TextStyle(
-                            color: AppColor.textSecondary,
+                            color: AppColor.primary1,
                             fontSize: 14,
                           ),
                         ),
                       ),
                       Container(
-                        height: 1,
+                        height: 0.5,
                         width: double.infinity,
-                        color: AppColor.secondary,
+                        color: AppColor.divider,
                       ),
                     ],
                   )
@@ -180,15 +180,15 @@ class _AyatCardState extends State<AyatCard> {
                           widget.ayat.translation ?? '',
                           textAlign: TextAlign.justify,
                           style: const TextStyle(
-                            color: AppColor.textPrimary,
+                            color: AppColor.black,
                             fontSize: 14,
                           ),
                         ),
                       ),
                       Container(
-                        height: 1,
+                        height: 0.5,
                         width: double.infinity,
-                        color: AppColor.secondary,
+                        color: AppColor.divider,
                       ),
                     ],
                   )
@@ -213,7 +213,7 @@ class _AyatCardState extends State<AyatCard> {
                       child: Text(
                         "${widget.ayat.number?.inSurah}",
                         style: const TextStyle(
-                          color: AppColor.primary1,
+                          color: AppColor.white,
                         ),
                       ),
                     ),
@@ -278,7 +278,10 @@ class _AyatCardState extends State<AyatCard> {
                       ? _audioBloc.add(AudioPauseEvent())
                       : _audioBloc.add(AudioPlayEvent(ayat: widget.ayat));
                 },
-                icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle),
+                icon: Icon(
+                  _isPlaying ? Icons.pause_circle : Icons.play_circle,
+                  color: AppColor.primary2,
+                ),
               );
       },
     );

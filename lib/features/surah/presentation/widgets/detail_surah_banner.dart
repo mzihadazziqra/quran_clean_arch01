@@ -26,12 +26,32 @@ class DetailSurahBanner extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xffdf98fa).withOpacity(0.5),
+                  // spreadRadius: 0.1,
+                  offset: const Offset(
+                    0,
+                    9,
+                  ),
+                  blurRadius: 15,
+                ),
+              ],
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Container(
                 decoration: const BoxDecoration(
-                  color: AppColor.secondary,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    stops: [0, 0.6, 1],
+                    colors: [
+                      Color(0xFFDF98FA),
+                      Color(0xFFB070FD),
+                      Color(0xFF9055FF)
+                    ],
+                  ),
                 ),
                 child: Stack(
                   children: [
@@ -63,26 +83,26 @@ class DetailSurahBanner extends StatelessWidget {
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 26,
-                                  color: AppColor.textPrimary,
+                                  color: AppColor.white,
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 5,
                               ),
                               Text(
                                 "${surah.arti}",
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w100,
                                   fontSize: 15,
-                                  color: AppColor.textPrimary,
+                                  color: AppColor.white,
                                 ),
+                              ),
+                              const SizedBox(
+                                height: 10,
                               ),
                               Text(
                                 "${surah.revelation}",
                                 style: const TextStyle(
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                   fontSize: 15,
-                                  color: AppColor.textSecondary,
+                                  color: AppColor.white,
                                 ),
                               ),
                             ],
@@ -96,7 +116,7 @@ class DetailSurahBanner extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
-                                  color: AppColor.textPrimary,
+                                  color: AppColor.white,
                                 ),
                               ),
                               Text(
@@ -105,7 +125,7 @@ class DetailSurahBanner extends StatelessWidget {
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 30,
-                                  color: AppColor.textSecondary,
+                                  color: AppColor.white,
                                 ),
                               ),
                               Text(
@@ -113,7 +133,7 @@ class DetailSurahBanner extends StatelessWidget {
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 13,
-                                  color: AppColor.textPrimary,
+                                  color: AppColor.white,
                                 ),
                               ),
                             ],
