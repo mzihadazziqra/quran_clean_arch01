@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import '../entities/quran_surah.dart';
 import '../../../../core/error/failure.dart';
-import '../../../../core/usecase/usecase.dart';
+import '../../../../core/common/usecase/usecase.dart';
 import '../repositories/surah_repository.dart';
 
 // Kelas untuk mendapatkan semua surah, mengimplementasikan usecase

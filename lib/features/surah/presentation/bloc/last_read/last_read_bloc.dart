@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/database/database/last_read.dart';
-import '../../../../../core/usecase/usecase.dart';
+import '../../../../../core/common/usecase/usecase.dart';
 import '../../../domain/usecases/get_last_read.dart';
 
 part 'last_read_event.dart';

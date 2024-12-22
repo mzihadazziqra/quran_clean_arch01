@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import '../../../../core/database/database/last_read.dart';
 import '../../../../core/error/failure.dart';
-import '../../../../core/usecase/usecase.dart';
+import '../../../../core/common/usecase/usecase.dart';
 import '../repositories/surah_repository.dart';
 
 // Kelas untuk menyimpan data bacaan terakhir, mengimplementasikan usecase

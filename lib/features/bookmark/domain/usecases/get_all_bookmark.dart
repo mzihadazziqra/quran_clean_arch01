@@ -2,7 +2,7 @@ import 'package:fpdart/fpdart.dart';
 
 import '../../../../core/database/database/bookmark.dart';
 import '../../../../core/error/failure.dart';
-import '../../../../core/usecase/usecase.dart';
+import '../../../../core/common/usecase/usecase.dart';
 import '../repositories/bookmark_repository.dart';
 
 /// Use case untuk mendapatkan semua bookmark.

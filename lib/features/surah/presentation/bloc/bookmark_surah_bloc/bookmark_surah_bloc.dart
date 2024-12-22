@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/database/database/bookmark.dart';
-import '../../../../../core/usecase/usecase.dart';
+import '../../../../../core/common/usecase/usecase.dart';
 import '../../../domain/entities/quran_surah.dart';
 import '../../../domain/usecases/bookmark.dart';
 
