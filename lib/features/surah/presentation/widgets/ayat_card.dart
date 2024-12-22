@@ -4,8 +4,8 @@ import 'package:quran_clean_arch/features/surah/presentation/widgets/tafsir_info
 import '../../../../core/theme/app_color.dart';
 import '../../../../core/utils/show_snackbar.dart';
 import '../../domain/entities/quran_surah.dart';
-import '../bloc/bookmark_surah_bloc/bookmark_surah_bloc.dart';
-import '../bloc/audio_bloc/audio_bloc.dart';
+import 'bookmark_surah_bloc/bookmark_surah_bloc.dart';
+import 'audio_bloc/audio_bloc.dart';
 import 'bookmark_icon.dart';
 
 class AyatCard extends StatefulWidget {

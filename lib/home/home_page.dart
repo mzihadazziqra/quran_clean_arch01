@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_clean_arch/core/theme/app_color.dart';
 
 import '../features/bookmark/presentation/pages/bookmark_page.dart';
-import '../features/surah/presentation/bloc/detail_surah_bloc/detail_surah_bloc.dart';
-import '../features/surah/presentation/bloc/last_read/last_read_bloc.dart';
+import '../features/surah/presentation/widgets/detail_surah_bloc/detail_surah_bloc.dart';
+import '../features/surah/presentation/widgets/last_read/last_read_bloc.dart';
 import '../features/surah/presentation/bloc/surah_bloc/surah_bloc.dart';
 import '../features/surah/presentation/pages/list_surah.dart';
 import '../features/surah/presentation/widgets/last_read_banner.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/show_snackbar.dart';
 import '../../domain/entities/quran_surah.dart';
-import '../bloc/bookmark_surah_bloc/bookmark_surah_bloc.dart';
+import 'bookmark_surah_bloc/bookmark_surah_bloc.dart';
 
 // widget bookmark icon untuk tombol menambahkan bookmark pada ayat card pada halaman detail surah
 class BookmarkIcon extends StatelessWidget {
