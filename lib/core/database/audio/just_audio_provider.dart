@@ -1,5 +1,5 @@
 import 'package:just_audio/just_audio.dart';
-import '../../domain/audio_provider.dart';
+import '../../common/domain/audio_provider.dart';
 
 /// Implementasi dari AudioProvider menggunakan Just Audio.
 class JustAudioProvider implements AudioProvider {

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:just_audio/just_audio.dart';
-import '../../../../../core/domain/audio_provider.dart';
+import '../../../../../core/common/domain/audio_provider.dart';
 import '../../../domain/entities/quran_surah.dart';
 
 part 'audio_event.dart';

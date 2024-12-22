@@ -14,8 +14,8 @@ import 'features/surah/presentation/bloc/bookmark_surah_bloc/bookmark_surah_bloc
 import 'features/surah/presentation/bloc/detail_surah_bloc/detail_surah_bloc.dart';
 import 'features/surah/presentation/bloc/last_read/last_read_bloc.dart';
 
-import 'core/domain/audio_provider.dart';
-import 'core/network/connection_checker.dart';
+import 'core/common/domain/audio_provider.dart';
+import 'core/common/network/connection_checker.dart';
 import 'features/surah/data/datasources/surah_local_data_source.dart';
 import 'features/surah/data/repositories/surah_repository_impl.dart';
 import 'features/surah/domain/repositories/surah_repository.dart';
