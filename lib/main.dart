@@ -4,10 +4,10 @@ import 'package:get_storage/get_storage.dart';
 
 import 'core/theme/theme.dart';
 import 'features/bookmark/presentation/bloc/bookmark_bloc.dart';
-import 'features/surah/presentation/widgets/audio_bloc/audio_bloc.dart';
-import 'features/surah/presentation/widgets/bookmark_surah_bloc/bookmark_surah_bloc.dart';
-import 'features/surah/presentation/widgets/detail_surah_bloc/detail_surah_bloc.dart';
-import 'features/surah/presentation/widgets/last_read/last_read_bloc.dart';
+import 'features/surah/presentation/bloc/audio_bloc/audio_bloc.dart';
+import 'features/surah/presentation/bloc/bookmark_surah_bloc/bookmark_surah_bloc.dart';
+import 'features/surah/presentation/bloc/detail_surah_bloc/detail_surah_bloc.dart';
+import 'features/surah/presentation/bloc/last_read/last_read_bloc.dart';
 import 'features/surah/presentation/bloc/surah_bloc/surah_bloc.dart';
 import 'features/surah/presentation/pages/detail_surah_page.dart';
 import 'home/home_page.dart';

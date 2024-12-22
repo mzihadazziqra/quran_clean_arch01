@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/entities/quran_surah.dart';
-import 'audio_bloc/audio_bloc.dart';
+import '../bloc/audio_bloc/audio_bloc.dart';
 
 class AudioIcon extends StatelessWidget {
   final Ayah ayat;

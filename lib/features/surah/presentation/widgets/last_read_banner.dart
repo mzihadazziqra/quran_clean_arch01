@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/utils/src/img_string.dart';
-import 'last_read/last_read_bloc.dart';
+import '../bloc/last_read/last_read_bloc.dart';
 
 // Widget banner last read yang akan ditampilkan pada halaman home
 class LastReadBanner extends StatelessWidget {
