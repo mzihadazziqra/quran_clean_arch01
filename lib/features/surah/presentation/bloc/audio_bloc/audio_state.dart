@@ -14,6 +14,7 @@ class AudioInitial extends AudioState {}
 // State ketika sedang melakukan loading untuk pemutaran audio
 class AudioLoading extends AudioState {
   final Ayah ayat;
+
   const AudioLoading({required this.ayat});
 
   @override
@@ -35,6 +36,7 @@ class AudioPaused extends AudioState {
   final Ayah ayat;
 
   const AudioPaused({required this.ayat});
+
   @override
   List<Object> get props => [ayat];
 }

@@ -17,9 +17,7 @@ void _initSurah() {
   // DataSource
   serviceLocator
     ..registerFactory<SurahLocalDataSource>(
-      () => SurahLocalDataSourceImpl(
-          // serviceLocator(),
-          ),
+      () => SurahLocalDataSourceImpl(),
     )
     // Repository
     ..registerFactory<SurahRepository>(

@@ -8,12 +8,12 @@ import '../../domain/entities/quran_surah.dart';
 // Widget untuk banner untuk detail surah
 class DetailSurahBanner extends StatelessWidget {
   final QuranSurah surah;
-  final Function()? onPressed;
+  final Function()? onPlayAllAyat;
 
   const DetailSurahBanner({
     super.key,
     required this.surah,
-    this.onPressed,
+    this.onPlayAllAyat,
   });
 
   @override
@@ -69,7 +69,7 @@ class DetailSurahBanner extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 25,
-                        vertical: 20,
+                        vertical: 15,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,48 +95,84 @@ class DetailSurahBanner extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 5,
                               ),
-                              Text(
-                                "${surah.revelation}",
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                  color: AppColor.white,
-                                ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "${surah.revelation} | ",
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 13,
+                                      color: AppColor.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "${surah.jumlahAyat} Ayat",
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 13,
+                                      color: AppColor.white,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                           // Informasi nomor surah dan jumlah ayat
-                          Column(
-                            children: [
-                              const Text(
-                                "Surah",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18,
-                                  color: AppColor.white,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  "Surah ke ${surah.nomor}",
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                    color: AppColor.white,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "${surah.nomor}",
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 30,
-                                  color: AppColor.white,
+                                const SizedBox(
+                                  height: 5,
                                 ),
-                              ),
-                              Text(
-                                "${surah.jumlahAyat} Ayat",
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 13,
-                                  color: AppColor.white,
-                                ),
-                              ),
-                            ],
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 5,
+                                    vertical: 8,
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: const Color.fromARGB(
+                                            255,
+                                            79,
+                                            69,
+                                            82,
+                                          ).withOpacity(0.1),
+                                          offset: const Offset(3, 3),
+                                          blurRadius: 3,
+                                        ),
+                                      ]),
+                                  child: GestureDetector(
+                                    onTap: onPlayAllAyat,
+                                    child: const Row(
+                                      children: [
+                                        Icon(Icons.play_arrow),
+                                        Text("Putar Audio"),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ],
                       ),
